@@ -84,11 +84,10 @@ public class SimpleMenu implements Menu {
         menu.add("Root 1", "1 1", actionDelegate);
         menu.add("Root 2", "2 1", actionDelegate);
 
-        System.out.println(Objects.requireNonNull(menu.select("1 1").orElse(null)).getName());
+        System.out.println(Objects.requireNonNull(menu.select("Root 1").orElse(null)).getName());
         System.out.println(Objects.requireNonNull(Objects.requireNonNull(menu.findItem("2 1").orElse(null)).number()));
 
-        for (MenuItemInfo itemInfo : menu) {
-            System.out.println(itemInfo.number() + " " + itemInfo.getName());
-        }
+        Printer printer = new Printer();
+        printer.print(menu);
     }
 }

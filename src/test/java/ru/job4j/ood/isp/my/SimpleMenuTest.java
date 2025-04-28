@@ -103,4 +103,28 @@ public class SimpleMenuTest {
         String expected = "1.Test1\r\n1.1.Test1.1\r\n1.2.Test1.2\r\n2.Test2\r\n";
         assertThat(outputStream.toString()).isEqualTo(expected);
     }
+
+    @Test
+    public void whenPrintMenuWithPrinterThenOutputCorrectly() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outputStream));
+
+        Menu menu = new SimpleMenu();
+        menu.add(Menu.ROOT, "Задача Общая.", STUB_ACTION);
+        menu.add(Menu.ROOT, "Test2", STUB_ACTION);
+        menu.add("Задача Общая.", "Задача Первая.", STUB_ACTION);
+        menu.add("Задача Общая.", "Задача Вторая.", STUB_ACTION);
+        menu.add("Задача Первая.", "Цель задачи.", STUB_ACTION);
+        menu.add("Задача Первая.", "Ограничения и требования к решению.", STUB_ACTION);
+
+        Printer printer = new Printer();
+        printer.print(menu);
+
+        System.setOut(originalOut);
+
+        String expected = "1. Задача Общая.\r\n----1.1. Задача Первая.\r\n--------1.1.1. Цель задачи.\r\n--------1.1.2. Ограничения и требования к решению.\r\n----1.2. Задача Вторая.\r\n2. Test2\r\n";
+        assertThat(outputStream.toString()).isEqualTo(expected);
+        printer.print(menu);
+    }
 }

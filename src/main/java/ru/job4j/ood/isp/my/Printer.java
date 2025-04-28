@@ -12,10 +12,12 @@ public class Printer implements MenuPrinter {
     public static void main(String[] args) {
         final ActionDelegate STUB_ACTION = System.out::println;
         Menu menu = new SimpleMenu();
-        menu.add(Menu.ROOT, "Test1", STUB_ACTION);
+        menu.add(Menu.ROOT, "Задача Общая.", STUB_ACTION);
         menu.add(Menu.ROOT, "Test2", STUB_ACTION);
-        menu.add("Test1", "Test1.1", STUB_ACTION);
-        menu.add("Test1", "Test1.2", STUB_ACTION);
+        menu.add("Задача Общая.", "Задача Первая.", STUB_ACTION);
+        menu.add("Задача Общая.", "Задача Вторая.", STUB_ACTION);
+        menu.add("Задача Первая.", "Цель задачи.", STUB_ACTION);
+        menu.add("Задача Первая.", "Ограничения и требования к решению.", STUB_ACTION);
         Printer printer = new Printer();
         printer.print(menu);
     }
