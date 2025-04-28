@@ -83,6 +83,7 @@ public class SimpleMenuTest {
         printer.print(menu);
     }
 
+
     @Test
     public void whenPrintMenuThenOutputCorrectly() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
